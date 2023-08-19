@@ -65,15 +65,15 @@ func NewPowerwallCollector(client *powerwall.Client) *powerwallCollector {
 	c.newDesc("instant_total_amps", "Instant Total Current", []string{"category"})
 
 	// meter devices
-	c.newDesc("dev_instant_power_watts", "Instant Power (W)", []string{"category", "tyoe", "serial"})
-	c.newDesc("dev_instant_reactive_power_watts", "Instant Reactive Power (W)", []string{"category", "tyoe", "serial"})
-	c.newDesc("dev_instant_apparent_power_watts", "Instant Apparent Power (W)", []string{"category", "tyoe", "serial"})
-	c.newDesc("dev_frequency_hz", "AC Frequency (Hz)", []string{"category", "tyoe", "serial"})
-	c.newDesc("dev_exported_joules_total", "Energy Exported", []string{"category", "tyoe", "serial"}) //TODO: check units
-	c.newDesc("dev_imported_joules_total", "Energy Imported", []string{"category", "tyoe", "serial"}) //TODO: check units
-	c.newDesc("dev_instant_average_volts", "Instant Average Voltage", []string{"category", "tyoe", "serial"})
-	c.newDesc("dev_instant_average_amps", "Instant Average Current", []string{"category", "tyoe", "serial"})
-	c.newDesc("dev_instant_total_amps", "Instant Total Current", []string{"category", "tyoe", "serial"})
+	c.newDesc("dev_instant_power_watts", "Instant Power (W)", []string{"category", "type", "serial"})
+	c.newDesc("dev_instant_reactive_power_watts", "Instant Reactive Power (W)", []string{"category", "type", "serial"})
+	c.newDesc("dev_instant_apparent_power_watts", "Instant Apparent Power (W)", []string{"category", "type", "serial"})
+	c.newDesc("dev_frequency_hz", "AC Frequency (Hz)", []string{"category", "type", "serial"})
+	c.newDesc("dev_exported_joules_total", "Energy Exported", []string{"category", "type", "serial"}) //TODO: check units
+	c.newDesc("dev_imported_joules_total", "Energy Imported", []string{"category", "type", "serial"}) //TODO: check units
+	c.newDesc("dev_instant_average_volts", "Instant Average Voltage", []string{"category", "type", "serial"})
+	c.newDesc("dev_instant_average_amps", "Instant Average Current", []string{"category", "type", "serial"})
+	c.newDesc("dev_instant_total_amps", "Instant Total Current", []string{"category", "type", "serial"})
 
 	// network interfaces
 	c.newDesc("network_enabled", "Is network interface enabled?", []string{"type", "name"})
