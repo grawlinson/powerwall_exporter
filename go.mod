@@ -1,9 +1,11 @@
 module powerwall_exporter
 
-go 1.17
+go 1.21
+
+toolchain go1.21.0
 
 require (
-	github.com/foogod/go-powerwall v0.2.0
+	github.com/andig/go-powerwall v0.2.1-0.20230808194509-dd70cdb6e140
 	github.com/jessevdk/go-flags v1.5.0
 	github.com/prometheus/client_golang v1.16.0
 	github.com/sirupsen/logrus v1.9.3
@@ -11,10 +13,10 @@ require (
 )
 
 require (
-	github.com/andig/go-powerwall v0.2.1-0.20230808194509-dd70cdb6e140 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/cespare/xxhash/v2 v2.2.0 // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
+	github.com/kr/text v0.2.0 // indirect
 	github.com/matttproud/golang_protobuf_extensions v1.0.4 // indirect
 	github.com/prometheus/client_model v0.4.0 // indirect
 	github.com/prometheus/common v0.44.0 // indirect
