@@ -123,7 +123,7 @@ func (c *powerwallCollector) Collect(ch chan<- prometheus.Metric) {
 			return
 		}
 	} else {
-		c.setGauge(ch, "charge_ratio", soe.Percentage / 100)
+		c.setGauge(ch, "charge_ratio", float32(soe.Percentage / 100))
 	}
 
 	opdata, err := c.pw.GetOperation()
@@ -134,7 +134,7 @@ func (c *powerwallCollector) Collect(ch chan<- prometheus.Metric) {
 		}
 	} else {
 		c.setGauge(ch, "operation_mode", 1, opdata.RealMode)
-		c.setGauge(ch, "reserve_ratio", opdata.BackupReservePercent / 100)
+		c.setGauge(ch, "reserve_ratio", float32(opdata.BackupReservePercent / 100))
 	}
 
 	sitemaster, err := c.pw.GetSitemaster()
@@ -169,18 +169,18 @@ func (c *powerwallCollector) Collect(ch chan<- prometheus.Metric) {
 			return
 		}
 	} else {
-		c.setGauge(ch, "full_pack_joules", sysstatus.NominalFullPackEnergy * 3600)
-		c.setGauge(ch, "remaining_joules", sysstatus.NominalEnergyRemaining * 3600)
+		c.setGauge(ch, "full_pack_joules", float32(sysstatus.NominalFullPackEnergy * 3600))
+		c.setGauge(ch, "remaining_joules", float32(sysstatus.NominalEnergyRemaining * 3600))
 		c.setGauge(ch, "island_state", 1, sysstatus.SystemIslandState)
 
 		for _, block := range sysstatus.BatteryBlocks {
 			serial := block.PackageSerialNumber
 			c.setGauge(ch, "battery_info", 1, serial, block.PackagePartNumber, block.Version)
-			c.setGauge(ch, "battery_full_pack_joules", block.NominalFullPackEnergy * 3600, serial)
-			c.setGauge(ch, "battery_remaining_joules", block.NominalEnergyRemaining * 3600, serial)
-			c.setGauge(ch, "battery_output_volts", block.VOut, serial)
-			c.setGauge(ch, "battery_output_amps", block.IOut, serial)
-			c.setGauge(ch, "battery_output_hz", block.FOut, serial)
+			c.setGauge(ch, "battery_full_pack_joules", float32(block.NominalFullPackEnergy * 3600), serial)
+			c.setGauge(ch, "battery_remaining_joules", float32(block.NominalEnergyRemaining * 3600), serial)
+			c.setGauge(ch, "battery_output_volts", float32(block.VOut), serial)
+			c.setGauge(ch, "battery_output_amps", float32(block.IOut), serial)
+			c.setGauge(ch, "battery_output_hz", float32(block.FOut), serial)
 			c.setGaugeBool(ch, "battery_off_grid", block.OffGrid, serial)
 			c.setGaugeBool(ch, "battery_island_state", block.VfMode, serial)
 			c.setGaugeBool(ch, "battery_wobble_detected", block.WobbleDetected, serial)
@@ -213,7 +213,7 @@ func (c *powerwallCollector) Collect(ch chan<- prometheus.Metric) {
 			return
 		}
 	} else {
-		for cat, data := range *aggs {
+		for cat, data := range aggs {
 			c.setGauge(ch, "instant_power_watts", data.InstantPower, cat)
 			c.setGauge(ch, "instant_reactive_power_watts", data.InstantReactivePower, cat)
 			c.setGauge(ch, "instant_apparent_power_watts", data.InstantApparentPower, cat)
@@ -242,7 +242,7 @@ func (c *powerwallCollector) Collect(ch chan<- prometheus.Metric) {
 			if err != nil {
 				log.WithFields(log.Fields{"cat": cat, "err": err}).Error("Error fetching detailed meter info")
 			} else {
-				for _, dev := range *devs {
+				for _, dev := range devs {
 					devtype := dev.Type
 					serial := dev.Connection.DeviceSerial
 					data := dev.CachedReadings
@@ -275,7 +275,7 @@ func (c *powerwallCollector) Collect(ch chan<- prometheus.Metric) {
 			return
 		}
 	} else {
-		for _, net := range *nets {
+		for _, net := range nets {
 			name := net.NetworkName
 			nettype := net.Interface
 			c.setGaugeBool(ch, "network_enabled", net.Enabled, nettype, name)
