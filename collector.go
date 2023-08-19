@@ -5,7 +5,7 @@ import (
 
 	log "github.com/sirupsen/logrus"
 	"github.com/prometheus/client_golang/prometheus"
-	"github.com/foogod/go-powerwall"
+	"github.com/andig/go-powerwall"
 )
 
 type powerwallCollector struct{

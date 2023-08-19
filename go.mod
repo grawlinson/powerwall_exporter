@@ -11,6 +11,7 @@ require (
 )
 
 require (
+	github.com/andig/go-powerwall v0.2.1-0.20230808194509-dd70cdb6e140 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/cespare/xxhash/v2 v2.2.0 // indirect
 	github.com/golang/protobuf v1.5.3 // indirect

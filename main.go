@@ -16,7 +16,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"gopkg.in/yaml.v2"
 
-	"github.com/foogod/go-powerwall"
+	"github.com/andig/go-powerwall"
 )
 
 const (
