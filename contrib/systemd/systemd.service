@@ -1,0 +1,45 @@
+[Unit]
+Description=Prometheus exporter for Tesla Powerwall metrics
+Requires=network-online.target
+After=network-online.target
+
+[Service]
+ExecStart=/usr/bin/prometheus-powerwall-exporter --config.file=/etc/prometheus/powerwall-exporter.yaml
+User=prometheus-powerwall-exporter
+Group=prometheus-powerwall-exporter
+Restart=on-failure
+RestartSec=5
+
+# Unit Hardening
+NoNewPrivileges=true
+LimitNOFILE=1048576
+UMask=0077
+
+ProtectSystem=strict
+ProtectHome=true
+PrivateUsers=yes
+PrivateTmp=true
+PrivateDevices=true
+DevicePolicy=closed
+ProtectHostname=true
+ProtectClock=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectKernelLogs=true
+ProtectControlGroups=true
+RestrictAddressFamilies=AF_INET AF_INET6
+RestrictNamespaces=true
+LockPersonality=true
+MemoryDenyWriteExecute=true
+RestrictRealtime=true
+RestrictSUIDSGID=true
+RemoveIPC=true
+CapabilityBoundingSet=
+AmbientCapabilities=
+
+SystemCallFilter=@system-service
+SystemCallFilter=~@privileged @resources
+SystemCallArchitectures=native
+
+[Install]
+WantedBy=multi-user.target
