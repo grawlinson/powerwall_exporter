@@ -1,4 +1,4 @@
-module powerwall_exporter
+module github.com/grawlinson/powerwall_exporter
 
 go 1.21
 
