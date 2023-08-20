@@ -11,6 +11,9 @@ Restart=on-failure
 RestartSec=5
 
 # Unit Hardening
+WorkingDirectory=/var/lib/prometheus-powerwall-exporter
+ReadWritePaths=/var/lib/prometheus-powerwall-exporter
+ReadOnlyPaths=/etc/prometheus/powerwall-exporter.yaml
 NoNewPrivileges=true
 LimitNOFILE=1048576
 UMask=0077

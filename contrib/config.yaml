@@ -6,6 +6,6 @@ device:
   gateway_address: "powerwall"
   login_email: "powerwalluser@example.com"
   login_password: "Super!Secret!Password"
-  tls_cert_file: "/var/lib/prometheus-powerwall-exporter/cert.pem"
+  tls_cert_file: "cert.pem"
   retry_interval: "1s"
   retry_timeout: "60s"
